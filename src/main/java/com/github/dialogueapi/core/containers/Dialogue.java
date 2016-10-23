@@ -4,6 +4,7 @@ import com.github.dialogueapi.DialogueAPI;
 import com.github.dialogueapi.core.Choice;
 import com.github.dialogueapi.core.Displayable;
 import com.github.dialogueapi.core.Sentence;
+import javafx.util.Pair;
 import org.spongepowered.api.entity.living.player.Player;
 
 import java.util.ArrayList;
@@ -20,23 +21,23 @@ public class Dialogue {
 
     private List<Displayable> dialogue = new ArrayList<>();
     private Player player;
-    private int dialogueID;
+    private Pair<String, Integer> dialogueID;
 
     public Dialogue(Player player, Dialogue dialogue){
         this.player = player;
         this.dialogue = dialogue.copyDialogueSequence();
     }
 
-    public Dialogue(List<Displayable> displayables, int id){
+    public Dialogue(List<Displayable> displayables, String string, int id){
         this.dialogue = displayables;
-        dialogueID = id;
+        dialogueID = new Pair<>(string, id);
     }
 
     public Player getPlayer() {
         return player;
     }
 
-    public int getDialogueID() {
+    public Pair<String, Integer> getDialogueID() {
         return dialogueID;
     }
 
