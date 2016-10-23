@@ -5,9 +5,9 @@ A Dialogue is made up of a list of Displayable's. Displayable's come in 2 kinds:
 
 Old Man: Hello! Can you help me? (Sentence)
 
--Yes
--No
--With what? (These three are all part of one ChoiceWheel)
+- Yes
+- No
+- With what? (These three are all part of one ChoiceWheel)
 
 If "yes" is clicked, it would initiate a quest via a DialogueAction. If "no" is clicked, it could initiate another Dialogue that's pretty much a dead sentence. If "with what?" is clicked, it could initiate another Dialogue followed by another ChoiceWheel.
 
