@@ -59,4 +59,8 @@ public class DialogueManager {
             temp.get().resetDialogue();
         }
     }
+
+    public void addDialogue(Dialogue give) {
+        dialogues.add(give);
+    }
 }

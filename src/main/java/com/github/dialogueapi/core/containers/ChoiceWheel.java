@@ -1,5 +1,6 @@
 package com.github.dialogueapi.core.containers;
 
+import com.github.dialogueapi.DialogueAPI;
 import com.github.dialogueapi.core.Choice;
 import com.github.dialogueapi.core.Displayable;
 import org.spongepowered.api.entity.living.player.Player;
@@ -29,7 +30,9 @@ public class ChoiceWheel implements Displayable {
 
     @Override
     public void display(Player player) {
-
+        for(Choice choice: choices){
+            choice.display(player);
+        }
     }
 
 }

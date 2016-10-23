@@ -1,4 +1,10 @@
 package com.github.dialogueapi.core.actions;
 
-public class DisplayDialogue {
+import com.github.dialogueapi.core.DialogueAction;
+
+public class DisplayDialogue extends DialogueAction {
+    @Override
+    public void doWork() {
+
+    }
 }

@@ -1,5 +1,6 @@
 package com.github.dialogueapi;
 
+import com.github.dialogueapi.core.builders.DialogueBuilder;
 import com.github.dialogueapi.managers.DialogueManager;
 import com.github.dialogueapi.managers.PlayerManager;
 import com.github.dialogueapi.runnables.CoreTimer;
@@ -23,6 +24,7 @@ public class DialogueAPI {
     private DialogueManager dialogueManager;
     private Messager messager;
     private PlayerManager playerManager;
+    private DialogueBuilder dialogueBuilder;
 
     @Listener
     public void onServerStart(GameInitializationEvent event){
@@ -31,6 +33,7 @@ public class DialogueAPI {
         dialogueManager = new DialogueManager();
         messager = new Messager();
         playerManager = new PlayerManager();
+        dialogueBuilder = new DialogueBuilder();
 
         registerListeners();
         registerCommands();
@@ -69,5 +72,9 @@ public class DialogueAPI {
 
     public PlayerManager getPlayerManager() {
         return playerManager;
+    }
+
+    public DialogueBuilder getDialogueBuilder() {
+        return dialogueBuilder;
     }
 }

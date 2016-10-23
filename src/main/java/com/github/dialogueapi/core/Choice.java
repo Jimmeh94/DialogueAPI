@@ -7,7 +7,7 @@ import org.spongepowered.api.text.Text;
 import java.util.Collections;
 import java.util.List;
 
-public class Choice implements Displayable{
+public class Choice {
 
     /*
      * This is a clickable choice that is linked to an action
@@ -32,7 +32,6 @@ public class Choice implements Displayable{
         //TODO set json string here
     }
 
-    @Override
     public void display(Player player) {
         DialogueAPI.getInstance().getMessager().sendMessage(player, sentence);
     }
