@@ -1,9 +1,12 @@
 package com.github.dialogueapi;
 
+import com.github.dialogueapi.runnables.CoreTimer;
 import com.google.inject.Inject;
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.event.Listener;
 import org.spongepowered.api.event.game.state.GameInitializationEvent;
 import org.spongepowered.api.plugin.Plugin;
+import org.spongepowered.api.scheduler.Task;
 
 import java.util.logging.Logger;
 
@@ -25,7 +28,9 @@ public class DialogueAPI {
     }
 
     private void registerRunnables() {
+        Task.Builder taskBuilder = Sponge.getScheduler().createTaskBuilder();
 
+        taskBuilder.execute(new CoreTimer()).intervalTicks(20L).submit(this);
     }
 
     private void registerCommands() {
