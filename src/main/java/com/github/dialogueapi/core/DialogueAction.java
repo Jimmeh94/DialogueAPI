@@ -1,7 +1,7 @@
 package com.github.dialogueapi.core;
 
-public interface DialogueAction {
+public abstract class DialogueAction {
 
-    void doWork();
+    public abstract void doWork();
 
 }
