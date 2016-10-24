@@ -2,6 +2,7 @@ package com.github.dialogueapi.core.containers;
 
 import com.github.dialogueapi.DialogueAPI;
 import com.github.dialogueapi.core.Choice;
+import com.github.dialogueapi.core.Condition;
 import com.github.dialogueapi.core.Displayable;
 import org.spongepowered.api.entity.living.player.Player;
 
@@ -16,13 +17,21 @@ public class ChoiceWheel implements Displayable {
      */
 
     private List<Choice> choices = new ArrayList<>();
+    private Condition condition;
 
-    public ChoiceWheel(List<Choice> choices){this.choices = choices;}
+    public ChoiceWheel(List<Choice> choices, Condition condition){
+        this.choices = choices;
+        this.condition = condition;
+    }
 
     public ChoiceWheel(ChoiceWheel wheel, Player player){
         for(Choice choice: wheel.getChoices()){
-            choices.add(new Choice(choice, player));
+            choices.add(new Choice(choice, player, wheel.getCondition()));
         }
+    }
+
+    public Condition getCondition() {
+        return condition;
     }
 
     private List<Choice> getChoices(){return choices;}
