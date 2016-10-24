@@ -11,13 +11,11 @@ public class DialogueBuilder {
 
     private List<Displayable> dialogue = new ArrayList<>();
     private DisplayableBuilder displayableBuilder = new DisplayableBuilder();
-    private int intID = -1, autoIntID = 0;
     private String stringID = null;
 
-    public DialogueBuilder intID(int id){intID = id; return this;}
     public DialogueBuilder stringID(String stringID){this.stringID = stringID; return this;}
 
-    public DialogueBuilder loadDialogue(){
+    public DialogueBuilder loadDialogue(DisplayableBuilder displayableBuilder){
         dialogue.add(displayableBuilder.load());
         return this;
     }
@@ -27,10 +25,7 @@ public class DialogueBuilder {
     }
 
     public DialogueBuilder build(){
-        Dialogue give;
-        if(intID == -1)
-            give = new Dialogue(new ArrayList<>(dialogue), stringID, autoIntID++);
-        else give = new Dialogue(new ArrayList<>(dialogue), stringID, intID++);
+        Dialogue give = new Dialogue(new ArrayList<>(dialogue), stringID);
         DialogueAPI.getInstance().getDialogueManager().addDialogue(give);
         reset();
         return this;
@@ -38,7 +33,6 @@ public class DialogueBuilder {
 
     private void reset(){
         dialogue.clear();
-        intID = -1;
         stringID = null;
     }
 }

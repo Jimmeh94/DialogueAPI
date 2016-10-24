@@ -6,6 +6,7 @@ import com.github.dialogueapi.core.Displayable;
 import com.github.dialogueapi.core.Sentence;
 import javafx.util.Pair;
 import org.spongepowered.api.entity.living.player.Player;
+import org.spongepowered.api.text.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,23 +22,23 @@ public class Dialogue {
 
     private List<Displayable> dialogue = new ArrayList<>();
     private Player player;
-    private Pair<String, Integer> dialogueID;
+    private String dialogueID;
 
     public Dialogue(Player player, Dialogue dialogue){
         this.player = player;
         this.dialogue = dialogue.copyDialogueSequence();
     }
 
-    public Dialogue(List<Displayable> displayables, String string, int id){
+    public Dialogue(List<Displayable> displayables, String string){
         this.dialogue = displayables;
-        dialogueID = new Pair<>(string, id);
+        dialogueID = String.valueOf(string);
     }
 
     public Player getPlayer() {
         return player;
     }
 
-    public Pair<String, Integer> getDialogueID() {
+    public String getDialogueID() {
         return dialogueID;
     }
 
@@ -66,7 +67,9 @@ public class Dialogue {
         if(dialogue.size() > 0){
             boolean shouldContinue = true;
             while(shouldContinue) {
+                DialogueAPI.getInstance().getMessager().sendMessage(player, Text.of(" "));
                 dialogue.get(0).display(this.player);
+                DialogueAPI.getInstance().getMessager().sendMessage(player, Text.of(" "));
                 if(dialogue.get(0) instanceof Choice)
                     shouldContinue = false;
                 dialogue.remove(0);

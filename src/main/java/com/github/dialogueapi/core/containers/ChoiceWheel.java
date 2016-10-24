@@ -20,9 +20,9 @@ public class ChoiceWheel implements Displayable {
     public ChoiceWheel(List<Choice> choices){this.choices = choices;}
 
     public ChoiceWheel(ChoiceWheel wheel){
-        Collections.copy(choices, wheel.getChoices());
-        for(Choice choice: choices){
-            choice.setID();
+        for(Choice choice: wheel.getChoices()){
+            choices.add(new Choice(choice));
+            choices.get(choices.size() - 1).setID();
         }
     }
 
