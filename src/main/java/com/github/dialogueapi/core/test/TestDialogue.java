@@ -22,7 +22,6 @@ public class TestDialogue {
         dialogueBuilder.stringID("test")
                 .loadDialogue(displayableBuilder
                         .setChoiceWheel(false)
-                        .setTimedDisplay(false)
                         .addSentence(Text.of("Will you help me?")))
                 .loadDialogue(displayableBuilder
                         .setChoiceWheel(true)//56,72,53
@@ -35,21 +34,18 @@ public class TestDialogue {
         dialogueBuilder.stringID("testYes")
                 .loadDialogue(displayableBuilder
                         .setChoiceWheel(false)
-                        .setTimedDisplay(false)
                         .addSentence(Text.of("Oh thank you!")))
                 .build();
 
         dialogueBuilder.stringID("testNo")
                 .loadDialogue(displayableBuilder
                         .setChoiceWheel(false)
-                        .setTimedDisplay(false)
                         .addSentence(Text.of("Well up yours buddy!")))
                 .build();
 
         dialogueBuilder.stringID("testWith")
                 .loadDialogue(displayableBuilder
                         .setChoiceWheel(false)
-                        .setTimedDisplay(false)
                         .addSentence(Text.of("I lost some candy in my van... ;)")))
                 .loadDialogue(displayableBuilder
                         .setChoiceWheel(true)

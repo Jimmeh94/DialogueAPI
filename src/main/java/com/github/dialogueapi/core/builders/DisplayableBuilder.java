@@ -16,7 +16,7 @@ public class DisplayableBuilder {
      */
 
     private List<Text> sentences = new ArrayList<>();
-    private boolean timedDisplay = false, choiceWheel = false;
+    private boolean choiceWheel = false;
     private List<Choice> choices = new ArrayList<>();
     private Condition condition;
 
@@ -35,11 +35,6 @@ public class DisplayableBuilder {
         return this;
     }
 
-    public DisplayableBuilder setTimedDisplay(boolean value){
-        timedDisplay = value;
-        return this;
-    }
-
     public DisplayableBuilder setChoiceWheel(boolean value){
         choiceWheel = value;
         return this;
@@ -50,7 +45,7 @@ public class DisplayableBuilder {
         if(choiceWheel){
             give = new ChoiceWheel(new ArrayList<>(choices), condition);
         } else {
-            give = new Sentence(timedDisplay, (new ArrayList<>(sentences)).toArray(new Text[]{}));
+            give = new Sentence((new ArrayList<>(sentences)).toArray(new Text[]{}));
         }
         reset();
         return give;
@@ -59,6 +54,6 @@ public class DisplayableBuilder {
     private void reset(){
         sentences.clear();
         choices.clear();
-        timedDisplay = choiceWheel = false;
+        choiceWheel = false;
     }
 }
