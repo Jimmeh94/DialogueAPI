@@ -26,7 +26,7 @@ public class Dialogue {
 
     public Dialogue(Player player, Dialogue dialogue){
         this.player = player;
-        this.dialogue = dialogue.copyDialogueSequence();
+        this.dialogue = dialogue.copyDialogueSequence(player);
     }
 
     public Dialogue(List<Displayable> displayables, String string){
@@ -42,13 +42,13 @@ public class Dialogue {
         return dialogueID;
     }
 
-    private List<Displayable> copyDialogueSequence(){
+    private List<Displayable> copyDialogueSequence(Player player){
        List<Displayable> give = new ArrayList<>();
        for(Displayable displayable: dialogue){
            if(displayable instanceof Sentence){
                 give.add(new Sentence((Sentence) displayable));
            } else {
-               give.add(new ChoiceWheel((ChoiceWheel) displayable));
+               give.add(new ChoiceWheel((ChoiceWheel) displayable, player));
            }
        }
         return give;

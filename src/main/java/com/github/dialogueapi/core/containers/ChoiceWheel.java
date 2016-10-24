@@ -19,9 +19,9 @@ public class ChoiceWheel implements Displayable {
 
     public ChoiceWheel(List<Choice> choices){this.choices = choices;}
 
-    public ChoiceWheel(ChoiceWheel wheel){
+    public ChoiceWheel(ChoiceWheel wheel, Player player){
         for(Choice choice: wheel.getChoices()){
-            choices.add(new Choice(choice));
+            choices.add(new Choice(choice, player));
             choices.get(choices.size() - 1).setID();
         }
     }

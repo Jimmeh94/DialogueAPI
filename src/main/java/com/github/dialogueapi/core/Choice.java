@@ -1,6 +1,7 @@
 package com.github.dialogueapi.core;
 
 import com.github.dialogueapi.DialogueAPI;
+import com.github.dialogueapi.core.player.PlayerInfo;
 import com.github.dialogueapi.utilities.AltCodes;
 import org.spongepowered.api.command.CommandSource;
 import org.spongepowered.api.entity.living.player.Player;
@@ -12,6 +13,7 @@ import org.spongepowered.api.text.format.TextStyles;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 import java.util.function.Consumer;
 
 public class Choice implements Consumer<CommandSource>{
@@ -22,6 +24,7 @@ public class Choice implements Consumer<CommandSource>{
 
     private List<DialogueAction> actions;
     private Text sentence;
+    private Player player;
     private int id;
 
     public Choice(Text text, List<DialogueAction> action){
@@ -29,9 +32,10 @@ public class Choice implements Consumer<CommandSource>{
         this.actions = action;
     }
 
-    public Choice(Choice choice){
+    public Choice(Choice choice, Player player){
         this.actions = choice.getAction();
         this.sentence = Text.of(choice.getSentence());
+        this.player = player;
     }
 
     public void setID(){
@@ -52,14 +56,18 @@ public class Choice implements Consumer<CommandSource>{
         return sentence;
     }
 
-    public int getId() {
-        return id;
-    }
-
     @Override
     public void accept(CommandSource commandSource) {
-        for(DialogueAction action: actions){
-            action.doWork();
+        Optional<PlayerInfo> temp = DialogueAPI.getInstance().getPlayerManager().findPlayerInfo(player);
+        if(temp.isPresent() && temp.get().getCurrentDialogue() != null && temp.get().getCurrentDialogue().hasChoiceID(id)){
+            for(DialogueAction action: actions){
+                action.doWork();
+            }
+            DialogueAPI.getInstance().getDialogueManager().removeDialogue(player);
         }
+    }
+
+    public int getId() {
+        return id;
     }
 }
