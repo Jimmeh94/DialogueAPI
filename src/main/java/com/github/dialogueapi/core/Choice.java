@@ -63,7 +63,7 @@ public class Choice implements Consumer<CommandSource>{
         if (temp.isPresent() && temp.get().getCurrentDialogue() != null && temp.get().getCurrentDialogue().hasChoiceID(this.id)) {
             DialogueAPI.getInstance().getDialogueManager().removeDialogue(this.player);
             for (DialogueAction action : this.actions)
-                action.doWork();
+                action.doWork(player);
         }
 
     }

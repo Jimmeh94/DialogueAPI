@@ -16,10 +16,37 @@ public class TestDialogue {
                 .loadDialogue(displayableBuilder
                         .setChoiceWheel(false)
                         .setTimedDisplay(false)
-                        .addSentence(Text.of("test sentence")))
+                        .addSentence(Text.of("Will you help me?")))
                 .loadDialogue(displayableBuilder
                         .setChoiceWheel(true)
-                        .addChoice(Text.of("test choice"), new DisplayDialogue()))
+                        .addChoice(Text.of("Yes I will"), new DisplayDialogue("testYes"))
+                        .addChoice(Text.of("No I won't"), new DisplayDialogue("testNo"))
+                        .addChoice(Text.of("With what?"), new DisplayDialogue("testWith")))
+                .build();
+
+        dialogueBuilder.stringID("testYes")
+                .loadDialogue(displayableBuilder
+                        .setChoiceWheel(false)
+                        .setTimedDisplay(false)
+                        .addSentence(Text.of("Oh thank you!")))
+                .build();
+
+        dialogueBuilder.stringID("testNo")
+                .loadDialogue(displayableBuilder
+                        .setChoiceWheel(false)
+                        .setTimedDisplay(false)
+                        .addSentence(Text.of("Well up yours buddy!")))
+                .build();
+
+        dialogueBuilder.stringID("testWith")
+                .loadDialogue(displayableBuilder
+                        .setChoiceWheel(false)
+                        .setTimedDisplay(false)
+                        .addSentence(Text.of("I lost some candy in my van... ;)")))
+                .loadDialogue(displayableBuilder
+                        .setChoiceWheel(true)
+                        .addChoice(Text.of("Sure, I loooooove candy"), new DisplayDialogue("testYes"))
+                        .addChoice(Text.of("Stranger danger!"), new DisplayDialogue("testNo")))
                 .build();
     }
 
