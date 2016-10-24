@@ -22,7 +22,6 @@ public class ChoiceWheel implements Displayable {
     public ChoiceWheel(ChoiceWheel wheel, Player player){
         for(Choice choice: wheel.getChoices()){
             choices.add(new Choice(choice, player));
-            choices.get(choices.size() - 1).setID();
         }
     }
 

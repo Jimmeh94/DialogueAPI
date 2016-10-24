@@ -36,9 +36,10 @@ public class Choice implements Consumer<CommandSource>{
         this.actions = choice.getAction();
         this.sentence = Text.of(choice.getSentence());
         this.player = player;
+        setID();
     }
 
-    public void setID(){
+    private void setID(){
         id = DialogueAPI.getInstance().getDialogueManager().getChoiceID();
         sentence = Text.builder().append(Text.of(TextColors.GOLD, TextStyles.BOLD, AltCodes.ARROW_RIGHT.getSign() + " "), sentence)
                 .onClick(TextActions.executeCallback(this)).build();
@@ -58,6 +59,7 @@ public class Choice implements Consumer<CommandSource>{
 
     @Override
     public void accept(CommandSource commandSource) {
+        DialogueAPI.getInstance().getLogger().error("YES");
         Optional<PlayerInfo> temp = DialogueAPI.getInstance().getPlayerManager().findPlayerInfo(player);
         if(temp.isPresent() && temp.get().getCurrentDialogue() != null && temp.get().getCurrentDialogue().hasChoiceID(id)){
             for(DialogueAction action: actions){
