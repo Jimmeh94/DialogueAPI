@@ -31,20 +31,9 @@ public class DialogueManager {
         return false;
     }
 
-    public void giveDialogue(Player player, int dialogueID){
-        for(Dialogue dialogue: dialogues){
-            if(dialogue.getDialogueID().getValue() == dialogueID){
-                Optional<PlayerInfo> temp = DialogueAPI.getInstance().getPlayerManager().findPlayerInfo(player);
-                if(temp.isPresent()){
-                    temp.get().setCurrentDialogue(new Dialogue(player, dialogue));
-                }
-            }
-        }
-    }
-
     public void giveDialogue(Player player, String dialogueID){
         for(Dialogue dialogue: dialogues){
-            if(dialogue.getDialogueID().getKey().equalsIgnoreCase(dialogueID)){
+            if(dialogue.getDialogueID().equalsIgnoreCase(dialogueID)){
                 Optional<PlayerInfo> temp = DialogueAPI.getInstance().getPlayerManager().findPlayerInfo(player);
                 if(temp.isPresent()){
                     temp.get().setCurrentDialogue(new Dialogue(player, dialogue));

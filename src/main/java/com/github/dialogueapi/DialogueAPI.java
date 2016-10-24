@@ -1,18 +1,20 @@
 package com.github.dialogueapi;
 
 import com.github.dialogueapi.core.builders.DialogueBuilder;
+import com.github.dialogueapi.events.InitializationEvents;
+import com.github.dialogueapi.events.PlayerConnection;
 import com.github.dialogueapi.managers.DialogueManager;
 import com.github.dialogueapi.managers.PlayerManager;
 import com.github.dialogueapi.runnables.CoreTimer;
 import com.github.dialogueapi.utilities.Messager;
 import com.google.inject.Inject;
+import org.slf4j.Logger;
 import org.spongepowered.api.Sponge;
+import org.spongepowered.api.event.EventManager;
 import org.spongepowered.api.event.Listener;
 import org.spongepowered.api.event.game.state.GameInitializationEvent;
 import org.spongepowered.api.plugin.Plugin;
 import org.spongepowered.api.scheduler.Task;
-
-import java.util.logging.Logger;
 
 @Plugin(id = "dialogueapi", name = "DialogueAPI", version = "1.0.0")
 public class DialogueAPI {
@@ -51,7 +53,10 @@ public class DialogueAPI {
     }
 
     private void registerListeners() {
+        EventManager eventManager = Sponge.getEventManager();
 
+        eventManager.registerListeners(this, new PlayerConnection());
+        eventManager.registerListeners(this, new InitializationEvents());
     }
 
     public static DialogueAPI getInstance() {

@@ -28,4 +28,8 @@ public class PlayerInfo {
     public void resetDialogue() {
         currentDialogue = null;
     }
+
+    public void startDialogue() {
+        currentDialogue.displayNext();
+    }
 }

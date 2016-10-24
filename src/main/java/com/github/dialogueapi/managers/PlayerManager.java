@@ -3,6 +3,7 @@ package com.github.dialogueapi.managers;
 import com.github.dialogueapi.core.player.PlayerInfo;
 import org.spongepowered.api.entity.living.player.Player;
 
+import javax.swing.text.html.Option;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -36,5 +37,12 @@ public class PlayerManager {
 
     public List<PlayerInfo> getPlayers() {
         return players;
+    }
+
+    public void unregister(Player targetEntity) {
+        Optional<PlayerInfo> temp = findPlayerInfo(targetEntity);
+        if(temp.isPresent()){
+            players.remove(temp.get());
+        }
     }
 }

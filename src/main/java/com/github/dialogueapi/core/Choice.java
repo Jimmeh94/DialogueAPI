@@ -1,13 +1,20 @@
 package com.github.dialogueapi.core;
 
 import com.github.dialogueapi.DialogueAPI;
+import com.github.dialogueapi.utilities.AltCodes;
+import org.spongepowered.api.command.CommandSource;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.text.Text;
+import org.spongepowered.api.text.action.ClickAction;
+import org.spongepowered.api.text.action.TextActions;
+import org.spongepowered.api.text.format.TextColors;
+import org.spongepowered.api.text.format.TextStyles;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.function.Consumer;
 
-public class Choice {
+public class Choice implements Consumer<CommandSource>{
 
     /*
      * This is a clickable choice that is linked to an action
@@ -29,17 +36,12 @@ public class Choice {
 
     public void setID(){
         id = DialogueAPI.getInstance().getDialogueManager().getChoiceID();
-        //TODO set json string here
+        sentence = Text.builder().append(Text.of(TextColors.GOLD, TextStyles.BOLD, AltCodes.ARROW_RIGHT.getSign() + " "), sentence)
+                .onClick(TextActions.executeCallback(this)).build();
     }
 
     public void display(Player player) {
         DialogueAPI.getInstance().getMessager().sendMessage(player, sentence);
-    }
-
-    public void performAction(){
-        for(DialogueAction action: actions){
-            action.doWork();
-        }
     }
 
     public List<DialogueAction> getAction() {
@@ -52,5 +54,12 @@ public class Choice {
 
     public int getId() {
         return id;
+    }
+
+    @Override
+    public void accept(CommandSource commandSource) {
+        for(DialogueAction action: actions){
+            action.doWork();
+        }
     }
 }
