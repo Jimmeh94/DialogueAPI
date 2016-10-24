@@ -56,7 +56,7 @@ public class Dialogue {
 
     public boolean hasChoiceID(int id){
         for(Displayable displayable: dialogue){
-            if(displayable instanceof Choice && ((Choice) displayable).getId() == id){
+            if(displayable instanceof ChoiceWheel && ((ChoiceWheel) displayable).hasID(id)){
                 return true;
             }
         }
@@ -70,12 +70,14 @@ public class Dialogue {
                 DialogueAPI.getInstance().getMessager().sendMessage(player, Text.of(" "));
                 dialogue.get(0).display(this.player);
                 DialogueAPI.getInstance().getMessager().sendMessage(player, Text.of(" "));
-                if(dialogue.get(0) instanceof Choice)
+                if(dialogue.get(0) instanceof ChoiceWheel) {
                     shouldContinue = false;
-                dialogue.remove(0);
-                if (dialogue.size() == 0) {
-                    DialogueAPI.getInstance().getDialogueManager().removeDialogue(player);
-                    shouldContinue = false;
+                } else {
+                    dialogue.remove(0);
+                    if (dialogue.size() == 0) {
+                        DialogueAPI.getInstance().getDialogueManager().removeDialogue(player);
+                        shouldContinue = false;
+                    }
                 }
             }
         }

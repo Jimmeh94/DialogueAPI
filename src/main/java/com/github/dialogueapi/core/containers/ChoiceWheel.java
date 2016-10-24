@@ -34,4 +34,10 @@ public class ChoiceWheel implements Displayable {
         }
     }
 
+    public boolean hasID(int id) {
+        for(Choice choice: choices){
+            if(choice.getId() == id)
+                return true;
+        }
+    }
 }
