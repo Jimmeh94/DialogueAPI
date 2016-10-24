@@ -39,5 +39,6 @@ public class ChoiceWheel implements Displayable {
             if(choice.getId() == id)
                 return true;
         }
+        return false;
     }
 }

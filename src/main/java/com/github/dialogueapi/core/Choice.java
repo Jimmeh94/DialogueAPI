@@ -59,11 +59,8 @@ public class Choice implements Consumer<CommandSource>{
 
     @Override
     public void accept(CommandSource commandSource) {
-        DialogueAPI.getInstance().getLogger().error("HERE");
         Optional<PlayerInfo> temp = DialogueAPI.getInstance().getPlayerManager().findPlayerInfo(this.player);
-        DialogueAPI.getInstance().getLogger().error("" + String.valueOf(temp.isPresent()) + " " + String.valueOf(temp.get().getCurrentDialogue() == null) + " " +
-            String.valueOf(temp.get().getCurrentDialogue().hasChoiceID(id)));
-        if (temp.isPresent() && temp.get().getCurrentDialogue() == null && temp.get().getCurrentDialogue().hasChoiceID(this.id)) {
+        if (temp.isPresent() && temp.get().getCurrentDialogue() != null && temp.get().getCurrentDialogue().hasChoiceID(this.id)) {
             DialogueAPI.getInstance().getDialogueManager().removeDialogue(this.player);
             for (DialogueAction action : this.actions)
                 action.doWork();
