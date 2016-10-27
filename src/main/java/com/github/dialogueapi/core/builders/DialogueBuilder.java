@@ -9,6 +9,12 @@ import java.util.List;
 
 public class DialogueBuilder {
 
+    /*
+     * Use to build a Dialogue
+     * Must have a StringID
+     * Use the DisplayableBuilder to build sentences and choices, then loadDialogue
+     */
+
     private List<Displayable> dialogue = new ArrayList<>();
     private DisplayableBuilder displayableBuilder = new DisplayableBuilder();
     private String stringID = null;

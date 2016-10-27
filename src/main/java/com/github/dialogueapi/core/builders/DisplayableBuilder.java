@@ -13,6 +13,7 @@ public class DisplayableBuilder {
     /*
      * Here, if choice wheel is left false, this will build a sentence
      * Otherwise, it will build a choice wheel
+     * Get access to this via DialogueBuilder to build sentences/choices
      */
 
     private List<Text> sentences = new ArrayList<>();

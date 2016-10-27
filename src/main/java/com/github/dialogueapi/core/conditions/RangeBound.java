@@ -10,6 +10,10 @@ import org.spongepowered.api.world.Location;
 
 public class RangeBound implements Condition {
 
+    /*
+     * Have to be within range to use choicewheel
+     */
+
     private double radius = 5.0;
     private Location center;
 

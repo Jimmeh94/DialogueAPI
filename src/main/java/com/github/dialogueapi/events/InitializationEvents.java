@@ -6,6 +6,10 @@ import org.spongepowered.api.event.game.state.GameStartedServerEvent;
 
 public class InitializationEvents {
 
+    /*
+     * Load dialogues here
+     */
+
     @Listener
     public void serverStarting(GameStartedServerEvent event){
         new TestDialogue();

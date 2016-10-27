@@ -21,6 +21,7 @@ public class Choice implements Consumer<CommandSource>{
 
     /*
      * This is a clickable choice that is linked to an action
+     * These are stored within the ChoiceWheel
      */
 
     private List<DialogueAction> actions;

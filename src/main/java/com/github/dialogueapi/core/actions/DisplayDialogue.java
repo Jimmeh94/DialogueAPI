@@ -9,6 +9,10 @@ import java.util.Optional;
 
 public class DisplayDialogue extends DialogueAction {
 
+    /*
+     * Starts another dialogue sequence
+     */
+
     private String id;
 
     public DisplayDialogue(String id){

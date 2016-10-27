@@ -17,7 +17,7 @@ public class Dialogue {
      * Container for whole conversation, both sentences and actions
      * Each dialogue should only contain up to one choice
      * If an option in that Choice continues the conversation, that next part of the conversation
-     * should be another Dialogue, using the DisplayDialogue DialogueAction as part of theat particular Choice
+     * should be another Dialogue, using the DisplayDialogue DialogueAction as part of that particular Choice
      */
 
     private List<Displayable> dialogue = new ArrayList<>();
