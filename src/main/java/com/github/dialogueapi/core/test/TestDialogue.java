@@ -22,7 +22,7 @@ public class TestDialogue {
         dialogueBuilder.stringID("test")
                 .loadDialogue(displayableBuilder
                         .setChoiceWheel(false)
-                        .addSentence(Text.of("Will you help me?")))
+                        .addSentence(Text.of("[Old Man] Will you help me?")))
                 .loadDialogue(displayableBuilder
                         .setChoiceWheel(true)//56,72,53
                         .addCondition(new RangeBound(new Location(Sponge.getServer().getWorld("world").get(), new Vector3d(56f, 72f, 53f))))

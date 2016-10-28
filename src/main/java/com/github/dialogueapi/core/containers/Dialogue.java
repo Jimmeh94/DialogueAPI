@@ -7,6 +7,7 @@ import com.github.dialogueapi.core.Sentence;
 import javafx.util.Pair;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.text.Text;
+import org.spongepowered.api.text.format.TextColors;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -66,12 +67,15 @@ public class Dialogue {
     public void displayNext(){
         if(dialogue.size() > 0){
             boolean shouldContinue = true;
+            DialogueAPI.getInstance().getMessager().sendMessage(player, Text.of(TextColors.GRAY, "=================================== "));
             while(shouldContinue) {
                 DialogueAPI.getInstance().getMessager().sendMessage(player, Text.of(" "));
                 dialogue.get(0).display(this.player);
                 DialogueAPI.getInstance().getMessager().sendMessage(player, Text.of(" "));
                 if(dialogue.get(0) instanceof ChoiceWheel) {
                     shouldContinue = false;
+                    DialogueAPI.getInstance().getMessager().sendMessage(player, Text.of(" "));
+                    DialogueAPI.getInstance().getMessager().sendMessage(player, Text.of(TextColors.GRAY, "=================================== "));
                 } else {
                     dialogue.remove(0);
                     if (dialogue.size() == 0) {
